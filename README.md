@@ -27,4 +27,57 @@ Melodify is a sleek and modern music streaming web application where users can d
    git clone https://github.com/Enris245/melodify.git  
    cd melodify
 
+
+2. Install dependencies:
+   ```bash
+    npm install  
+
+3. Start the server:
+   ```bash
+   node server.js  
+4. Open your browser and visit:
+    ```bash
+    http://127.0.0.1:3000
+    
+---
+
+Alternatively, access the live demo at:
+
+Live Link :http://melodify.freewebhostmost.com
+
+---
+
+## Contributing 🤝
+
+ Contributions are welcome!
+
+1. Fork the repository.
+2. Create a new branch for your feature:
+     ```bash
+     git checkout -b feature-name   
+ 3. Commit your changes:
+     ```bash
+      git commit -m "Added feature-name" 
+4. Push to the branch:
+    ```bash
+     git push origin feature-name  
+5. Open a Pull Request.
+
+---
+
+## License 📄
+This project is licensed under the MIT License.
+
+---
+
+## Feedback 💬  
+We welcome your feedback! Please open an issue on our [GitHub Issues](https://github.com/Enris245/melodify/issues).  
+
+
+
+
+
+
+
+
   
