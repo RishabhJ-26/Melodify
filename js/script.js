@@ -1,4 +1,4 @@
-console.log('lets write JS');
+
 let currsong = new Audio();
 let songs;
 let currFolder;
