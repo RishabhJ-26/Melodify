@@ -3,6 +3,8 @@ let currsong = new Audio();
 let songs;
 let currFolder;
 
+const baseUrl = `https://rishabhj-26.github.io/Melodify`;
+
 // Format the time for the player
 function formatTime(seconds) {
   if (isNaN(seconds) || seconds < 0) return '00:00';
@@ -15,10 +17,13 @@ function formatTime(seconds) {
 // Fetch and display songs from the specified folder
 async function getSongs(folder) {
   currFolder = folder;
-  const baseUrl = `https://rishabhj-26.github.io/Melodify`;
   let response = await fetch(`${baseUrl}/${folder}/`);
+  if (!response.ok) {
+    console.error(`Failed to fetch songs from ${baseUrl}/${folder}/`);
+    return [];
+  }
+  
   let htmlContent = await response.text();
-
   let div = document.createElement("div");
   div.innerHTML = htmlContent;
   let anchors = div.getElementsByTagName("a");
@@ -60,7 +65,7 @@ async function getSongs(folder) {
 
 // Play the selected song
 const playMusic = (track, pause = false) => {
-  currsong.src = `https://rishabhj-26.github.io/Melodify/${currFolder}/${track}`;
+  currsong.src = `${baseUrl}/${currFolder}/${track}`;
   if (!pause) {
     currsong.play();
     play.src = "images/pause.svg";
@@ -71,20 +76,29 @@ const playMusic = (track, pause = false) => {
 
 // Display all available albums
 async function displayAlbums() {
-  let response = await fetch(`https://rishabhj-26.github.io/Melodify/songs/`);
+  let response = await fetch(`${baseUrl}/songs/`);
+  if (!response.ok) {
+    console.error(`Failed to fetch albums from ${baseUrl}/songs/`);
+    return;
+  }
+
   let htmlContent = await response.text();
-  
   let div = document.createElement("div");
   div.innerHTML = htmlContent;
   let anchors = div.getElementsByTagName("a");
 
   let cardContainer = document.querySelector(".cardContainer");
   for (let element of anchors) {
-    if (element.href.includes("/songs/")) {
+    if (element.href.includes("/songs/") && !element.href.endsWith("/songs/")) {
       let folder = element.href.split("/").slice(-2)[0];
-      let metadataResponse = await fetch(`https://rishabhj-26.github.io/Melodify/songs/${folder}/info.json`);
-      let metadata = await metadataResponse.json();
+      let metadataResponse = await fetch(`${baseUrl}/songs/${folder}/info.json`);
+      
+      if (!metadataResponse.ok) {
+        console.error(`Failed to fetch metadata from ${baseUrl}/songs/${folder}/info.json`);
+        continue;
+      }
 
+      let metadata = await metadataResponse.json();
       cardContainer.innerHTML += `
         <div data-folder="songs/${folder}" class="card">
           <div class="play">
@@ -92,7 +106,7 @@ async function displayAlbums() {
               <path d="M5 20V4L19 12L5 20Z" stroke="#141B34" fill="#000" stroke-width="1.5" />
             </svg>
           </div>
-          <img src="https://rishabhj-26.github.io/Melodify/songs/${folder}/cover.jpg" alt="">
+          <img src="${baseUrl}/songs/${folder}/cover.jpg" alt="">
           <h2>${metadata.title}</h2>
           <p>${metadata.description}</p>
         </div>`;
@@ -103,17 +117,20 @@ async function displayAlbums() {
   Array.from(document.querySelectorAll(".card")).forEach((card) => {
     card.addEventListener("click", async () => {
       songs = await getSongs(card.dataset.folder);
-      playMusic(songs[0]);
+      if (songs.length > 0) {
+        playMusic(songs[0]);
+      }
     });
   });
 }
 
 // Main function to initialize the player
 async function main() {
-  await getSongs("songs/ncs");
-  playMusic(songs[0], true);
+  await displayAlbums();
 
-  displayAlbums();
+  if (songs && songs.length > 0) {
+    playMusic(songs[0], true);
+  }
 
   // Play/Pause functionality
   play.addEventListener("click", () => {
