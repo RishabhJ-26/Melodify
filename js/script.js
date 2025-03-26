@@ -20,7 +20,7 @@ function formatTime(seconds) {
 }
 async function getSongs(folder) {
   currFolder = folder;
-  let a = await fetch(`/Melodify/${folder}/`);
+  let a = await fetch(`/${folder}/`);
   let response = await a.text();
   let div = document.createElement("div");
   div.innerHTML = response;
@@ -29,21 +29,21 @@ async function getSongs(folder) {
   for (let index = 0; index < as.length; index++) {
     const element = as[index];
     if (element.href.endsWith(".mp3"))
-      songs.push(element.href.split(`/Melodify/${folder}/`)[1]);
+      songs.push(element.href.split(`/${folder}/`)[1]);
   }
   //shows all the songs ini playlist
   let songul = document.querySelector(".songList").getElementsByTagName("ul")[0];
   songul.innerHTML = "";
   for (const song of songs) {
     songul.innerHTML = songul.innerHTML + `<li>
-                        <img class="invert" src="/Melodify/images/music.svg" alt="">
+                        <img class="invert" src="/images/music.svg" alt="">
                         <div class="info">
                             <div> ${song.replaceAll("%20", " ")}</div>
                             <div>Rishabh</div>
                         </div>
                        <div class="playnow">
                         <span>Play Now</span>
-                        <img class="invert" src="/Melodify/images/play.svg" alt="">
+                        <img class="invert" src="/images/play.svg" alt="">
                        </div> 
       </li>`;
   }
@@ -59,10 +59,10 @@ async function getSongs(folder) {
 }
 const playMusic = (track, pause = false) => {
 
-  currsong.src = `/Melodify/${currFolder}/` + track;
+  currsong.src = `/${currFolder}/` + track;
   if (!pause) {
     currsong.play();
-    play.src = "/Melodify/images/pause.svg";
+    play.src = "/images/pause.svg";
   }
   document.querySelector(".songinfo").innerHTML = decodeURI(track);
   document.querySelector(".songtime").innerHTML = "00:00/00:00";
@@ -71,7 +71,7 @@ const playMusic = (track, pause = false) => {
 
 
 async function displayAlbums() {
-  let a = await fetch(`/Melodify/songs/`);
+  let a = await fetch(`/songs/`);
   let response = await a.text();
   let div = document.createElement("div");
   div.innerHTML = response;
@@ -86,7 +86,7 @@ async function displayAlbums() {
 
       let folder = e.href.split("/").slice(-2)[0]
       //Get the metadata of the folder
-      let a = await fetch(`/Melodify/songs/${folder}/info.json`);
+      let a = await fetch(`/songs/${folder}/info.json`);
       let response = await a.json();
       cardContainer.innerHTML = cardContainer.innerHTML + `<div data-folder="${folder}" class="card ">
 
@@ -97,7 +97,7 @@ async function displayAlbums() {
                                     stroke-linejoin="round" />
                             </svg>
                         </div>
-                        <img src="/Melodify/songs/${folder}/cover.jpg" alt="">
+                        <img src="/songs/${folder}/cover.jpg" alt="">
                         <h2>${response.title}</h2>
                         <p>${response.description}</p>
                      </div>`
@@ -107,7 +107,7 @@ async function displayAlbums() {
   //Load the playlist when card is clicked
   Array.from(document.getElementsByClassName("card")).forEach(e => {
     e.addEventListener("click", async item => {
-      songs = await getSongs(`/Melodify/songs/${item.currentTarget.dataset.folder}`)
+      songs = await getSongs(`/songs/${item.currentTarget.dataset.folder}`)
       playMusic(songs[0]);
 
     })
@@ -118,7 +118,7 @@ async function displayAlbums() {
 
 
 async function main() {
-  await getSongs("/Melodify/songs/ncs");
+  await getSongs("/songs/ncs");
   playMusic(songs[0], true);
 
   //Display all albums on the page
@@ -128,11 +128,11 @@ async function main() {
   play.addEventListener("click", e => {
     if (currsong.paused) {
       currsong.play();
-      play.src = "/Melodify/images/pause.svg";
+      play.src = "/images/pause.svg";
     }
     else {
       currsong.pause();
-      play.src = "/Melodify/images/play.svg";
+      play.src = "/images/play.svg";
 
     }
   })
@@ -159,7 +159,7 @@ async function main() {
   })
   //Add a  event Listener to previous 
   previous.addEventListener("click", e => {
-    console.log('Previous ');
+    console.log('Previous');
     let index = songs.indexOf(currsong.src.split('/').slice(-1)[0]);
     if ((index - 1) >= 0) {
       playMusic(songs[index - 1]);
@@ -183,7 +183,7 @@ async function main() {
     console.log("setting volume to " + e.target.value + " /100");
     currsong.volume = parseInt(e.target.value) / 100;
     if (currsong.volume > 0) {
-      document.querySelector(".vol>img").src = document.querySelector(".vol>img").src.replace("/Melodify/images/mute.svg", "/Melodify/images/volume.svg");
+      document.querySelector(".vol>img").src = document.querySelector(".vol>img").src.replace("/images/mute.svg", "/images/volume.svg");
 
     }
 
@@ -194,7 +194,7 @@ async function main() {
       
      if(e.target.src.includes("volume.svg"))
      {
-      e.target.src = e.target.src.replace("/Melodify/images/volume.svg", "/Melodify/images/mute.svg");
+      e.target.src = e.target.src.replace("/images/volume.svg", "/images/mute.svg");
 
       currsong.volume=0;
       document.querySelector(".range").getElementsByTagName("input")[0].value=0;
@@ -202,7 +202,7 @@ async function main() {
     else
     {
       document.querySelector(".range").getElementsByTagName("input")[0].value=10;
-        e.target.src = e.target.src.replace("/Melodify/images/mute.svg", "/Melodify/images/volume.svg");
+        e.target.src = e.target.src.replace("/images/mute.svg", "/images/volume.svg");
        currsong.volume=.1;
 
      }
