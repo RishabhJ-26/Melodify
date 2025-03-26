@@ -20,7 +20,7 @@ function formatTime(seconds) {
 }
 async function getSongs(folder) {
   currFolder = folder;
-  let a = await fetch(`/${folder}/`);
+  let a = await fetch(`./${folder}/`);
   let response = await a.text();
   let div = document.createElement("div");
   div.innerHTML = response;
@@ -36,14 +36,14 @@ async function getSongs(folder) {
   songul.innerHTML = "";
   for (const song of songs) {
     songul.innerHTML = songul.innerHTML + `<li>
-                        <img class="invert" src="images/music.svg" alt="">
+                        <img class="invert" src="./images/music.svg" alt="">
                         <div class="info">
                             <div> ${song.replaceAll("%20", " ")}</div>
                             <div>Rishabh</div>
                         </div>
                        <div class="playnow">
                         <span>Play Now</span>
-                        <img class="invert"  src="images/play.svg" alt="">
+                        <img class="invert"  src="./images/play.svg" alt="">
                        </div> 
       </li>`;
   }
@@ -59,10 +59,10 @@ async function getSongs(folder) {
 }
 const playMusic = (track, pause = false) => {
 
-  currsong.src = `/${currFolder}/` + track;
+  currsong.src = `./${currFolder}/` + track;
   if (!pause) {
     currsong.play();
-    play.src = "images/pause.svg";
+    play.src = "./images/pause.svg";
   }
   document.querySelector(".songinfo").innerHTML = decodeURI(track);
   document.querySelector(".songtime").innerHTML = "00:00/00:00";
@@ -71,7 +71,7 @@ const playMusic = (track, pause = false) => {
 
 
 async function displayAlbums() {
-  let a = await fetch(`/songs/`);
+  let a = await fetch(`./songs/`);
   let response = await a.text();
   let div = document.createElement("div");
   div.innerHTML = response;
@@ -86,7 +86,7 @@ async function displayAlbums() {
 
       let folder = e.href.split("/").slice(-2)[0]
       //Get the metadata of the folder
-      let a = await fetch(`/songs/${folder}/info.json`);
+      let a = await fetch(`./songs/${folder}/info.json`);
       let response = await a.json();
       cardContainer.innerHTML = cardContainer.innerHTML + `<div data-folder="${folder}" class="card ">
 
@@ -97,7 +97,7 @@ async function displayAlbums() {
                                     stroke-linejoin="round" />
                             </svg>
                         </div>
-                        <img src="/songs/${folder}/cover.jpg" alt="">
+                        <img src="./songs/${folder}/cover.jpg" alt="">
                         <h2>${response.title}</h2>
                         <p>${response.description}</p>
                      </div>`
@@ -128,11 +128,11 @@ async function main() {
   play.addEventListener("click", e => {
     if (currsong.paused) {
       currsong.play();
-      play.src = "images/pause.svg";
+      play.src = "./images/pause.svg";
     }
     else {
       currsong.pause();
-      play.src = "images/play.svg";
+      play.src = "./images/play.svg";
 
     }
   })
@@ -183,7 +183,7 @@ async function main() {
     console.log("setting volume to " + e.target.value + " /100");
     currsong.volume = parseInt(e.target.value) / 100;
     if (currsong.volume > 0) {
-      document.querySelector(".vol>img").src = document.querySelector(".vol>img").src.replace("mute.svg", "volume.svg");
+      document.querySelector(".vol>img").src = document.querySelector(".vol>img").src.replace("./mute.svg", "./volume.svg");
     }
 
   })
@@ -193,14 +193,14 @@ async function main() {
       
      if(e.target.src.includes("volume.svg"))
      {
-      e.target.src=e.target.src.replace("volume.svg","mute.svg");
+      e.target.src=e.target.src.replace("./volume.svg","./mute.svg");
       currsong.volume=0;
       document.querySelector(".range").getElementsByTagName("input")[0].value=0;
     }
     else
     {
       document.querySelector(".range").getElementsByTagName("input")[0].value=10;
-       e.target.src=e.target.src.replace("mute.svg","volume.svg");
+       e.target.src=e.target.src.replace("./mute.svg","./volume.svg");
        currsong.volume=.1;
 
      }
