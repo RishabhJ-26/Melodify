@@ -59,7 +59,7 @@ async function getSongs(folder) {
 }
 const playMusic = (track, pause = false) => {
 
-  currsong.src = `/${currFolder}/` + track;
+  currsong.src = `${currFolder}/` + track;
   if (!pause) {
     currsong.play();
     play.src = "/images/pause.svg";
