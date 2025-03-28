@@ -80,7 +80,7 @@ async function displayAlbums() {
                 </div>
                 <img src="./songs/${folder}/cover.jpg" alt="">
                 <h2>${info.title}</h2>
-                <p>${info.description}</p>
+                
             `;
 
             div.addEventListener("click", async () => {
