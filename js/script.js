@@ -3,7 +3,7 @@ console.log('lets write JS');
 let currsong = new Audio();
 let songs = [];
 let currFolder = "";
-let play = document.querySelector(".playnow img"); 
+let play = document.querySelector("#play"); 
 
 function formatTime(seconds) {
     if (isNaN(seconds) || seconds < 0) return '00:00';
@@ -109,15 +109,19 @@ async function main() {
         }
     });
 
+    currsong.addEventListener("loadedmetadata", () => {
+        document.querySelector(".songtime").innerHTML = `00:00 / ${formatTime(currsong.duration)}`;
+    });
+
     currsong.addEventListener("timeupdate", () => {
-        document.querySelector(".songtime").innerHTML = `${formatTime(currsong.currentTime)}/${formatTime(currsong.duration)}`;
+        document.querySelector(".songtime").innerHTML = `${formatTime(currsong.currentTime)} / ${formatTime(currsong.duration)}`;
         document.querySelector(".circle").style.left = (currsong.currentTime / currsong.duration) * 100 + "%";
     });
 
     document.querySelector(".seekbar").addEventListener("click", (e) => {
-        let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100;
+        let percent = (e.offsetX / e.target.clientWidth) * 100;
         document.querySelector(".circle").style.left = percent + "%";
-        currsong.currentTime = ((percent * currsong.duration) / 100);
+        currsong.currentTime = (percent * currsong.duration) / 100;
     });
 
     document.querySelector(".hamburger").addEventListener("click", () => {
@@ -128,7 +132,7 @@ async function main() {
         document.querySelector(".left").style.left = "-100%";
     });
 
-    previous.addEventListener("click", () => {
+    document.querySelector("#previous").addEventListener("click", () => {
         let currentSongName = decodeURIComponent(currsong.src.split('/').pop());
         let index = songs.indexOf(currentSongName);
         if (index > 0) {
@@ -136,7 +140,7 @@ async function main() {
         }
     });
 
-    next.addEventListener("click", () => {
+    document.querySelector("#next").addEventListener("click", () => {
         let currentSongName = decodeURIComponent(currsong.src.split('/').pop());
         let index = songs.indexOf(currentSongName);
         if (index < songs.length - 1) {
@@ -146,11 +150,7 @@ async function main() {
 
     document.querySelector(".range input").addEventListener("change", (e) => {
         currsong.volume = parseInt(e.target.value) / 100;
-        if (currsong.volume > 0) {
-            document.querySelector(".vol>img").src = "./images/volume.svg";
-        } else {
-            document.querySelector(".vol>img").src = "./images/mute.svg";
-        }
+        document.querySelector(".vol>img").src = currsong.volume > 0 ? "./images/volume.svg" : "./images/mute.svg";
     });
 
     document.querySelector(".vol>img").addEventListener("click", (e) => {
