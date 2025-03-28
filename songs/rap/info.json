@@ -1,4 +1,11 @@
 {
-    "title": "Rap Vibes",
-    "description":"Bold rhythms and raw lyrical flow"
+  "title": "Rap Collection",
+  "description": "A curated selection of rap tracks.",
+  "songs": [
+    "Call Aundi.mp3",
+    "Desi Kalakaar.mp3",
+    "Harsh Likhari - Bebe Bapu.mp3",
+    "KALAASTAR.mp3",
+    "One Bottle Down.mp3"
+  ]
 }
