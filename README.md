@@ -43,7 +43,7 @@ Melodify is a sleek and modern music streaming web application where users can d
 
 Alternatively, access the live demo at:
 
-Live Link :http://melodify.freewebhostmost.com
+Live Link :(https://melodify-two.vercel.app/)
 
 ---
 
