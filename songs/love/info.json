@@ -1,4 +1,13 @@
 {
-    "title": "Love Songs",
-    "description":"Heartfelt melodies expressing deep emotions"
+  "title": "Love Songs Collection",
+  "description": "A compilation of romantic tracks to set the mood.",
+  "songs": [
+    "Acha Lagta Hai.mp3",
+    "Aunty Ji Ek Main Aur Ekk Tu.mp3",
+    "Dil Meri Na Sune.mp3",
+    "Jeene Laga Hoon Lyrical.mp3",
+    "Main Koi Aisa Geet Gaoon.mp3",
+    "Masakali.mp3",
+    "Sooraj Ki Bahoon Mein.mp3"
+  ]
 }
