@@ -1,4 +1,11 @@
 {
-    "title": " Jain Devotion",
-    "description":"Soulful hymns inspiring peace and spirituality"
+  "title": "Jain Devotional Songs",
+  "description": "A collection of soulful Jain devotional tracks.",
+  "songs": [
+    "Antim Chaumasa.mp3",
+    "Pawan Bhoomi 2.0.mp3",
+    "Savariya Parasnath Shikhar Par Bhala Birajya Ji.mp3",
+    "Ye Chamak Ye Damak.mp3",
+    "jain shasan ka baccha baccha.mp3"
+  ]
 }
