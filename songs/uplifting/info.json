@@ -1,4 +1,9 @@
 {
-    "title": " Uplifting Tunes",
-    "description":"Energizing melodies that inspire positivity"
+  "title": "Uplifting Tunes",
+  "description": "A collection of motivational and uplifting songs.",
+  "songs": [
+    "Sultan.mp3",
+    "Teri Baari.mp3",
+    "Ziddi Dil.mp3"
+  ]
 }
