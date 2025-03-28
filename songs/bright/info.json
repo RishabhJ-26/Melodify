@@ -1,4 +1,11 @@
 {
-    "title": "Bright Music",
-    "description":"Radiant tunes spreading joy and inspiration"
+  "title": "Bright",
+  "description": "An uplifting selection of songs to brighten your day.",
+  "songs": [
+    "Angreji Beat.mp3",
+    "Ban Ja Rani.mp3",
+    "Jugni.mp3",
+    "Love You Zindagi.mp3",
+    "Tumhi Ho Bandhu.mp3"
+  ]
 }
