@@ -1,4 +1,13 @@
 {
-    "title": "Sleeping Songs",
-    "description":"Melodic rhythms with timeless appeal."
+  "title": "NCS Collection",
+  "description": "A selection of tracks from the NCS library.",
+  "songs": [
+    "Blind Memories.mp3",
+    "Cumbia del Norte.mp3",
+    "DaDaDum.mp3",
+    "I Don't Think So.mp3",
+    "Mi Canton.mp3",
+    "Rain Rain Go Away.mp3",
+    "Silent Night.mp3"
+  ]
 }
