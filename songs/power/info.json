@@ -1,4 +1,8 @@
 {
-    "title": "Power",
-    "description":"Unstoppable force driving strength and success"
+  "title": "Power Tracks",
+  "description": "Energizing songs to boost your motivation.",
+  "songs": [
+    "KAR HAR MAIDAAN FATEH.mp3",
+    "Soorma Anthem.mp3"
+  ]
 }
