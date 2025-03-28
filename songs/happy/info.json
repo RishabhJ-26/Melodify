@@ -1,4 +1,9 @@
 {
-   "title" :"Happy Favorites",
-    "description" : "Put a smile on your face with these happy tunes from the last 30 years."
+  "title": "Happy Vibes Collection",
+  "description": "A selection of upbeat tracks to elevate your mood.",
+  "songs": [
+    "Ed Sheeran - Shape of You.mp3",
+    "Gallan Goodiyaan.mp3",
+    "MATARGASHTI.mp3"
+  ]
 }
