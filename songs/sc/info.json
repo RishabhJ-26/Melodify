@@ -1,4 +1,8 @@
 {
-    "title": "Random",
-    "description":"Unexpected rhythms "
+  "title": "Punjabi Collection",
+  "description": "A selection of tracks in the SC genre.",
+  "songs": [
+    "DAKU INDERPAL MOGA.mp3",
+    "SOFTLY.mp3"
+  ]
 }
