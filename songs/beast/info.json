@@ -1,4 +1,13 @@
 {
-    "title": "Beast Music",
-    "description":" powerful beats, unstoppable energy"
+  "title": "Beast",
+  "description": "A selection of high-energy tracks to power your workouts and motivate your day.",
+  "songs": [
+    "Brothers Anthem.mp3",
+    "Get Ready To Fight.mp3",
+    "KAR HAR MAIDAAN FATEH.mp3",
+    "Soorma Anthem.mp3",
+    "Sultan.mp3",
+    "Teri Baari.mp3",
+    "Ziddi Dil.mp3"
+  ]
 }
