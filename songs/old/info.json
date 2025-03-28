@@ -1,4 +1,14 @@
 {
-    "title": "Old is Gold",
-    "description":"Classic melodies evoking nostalgic memories"
+  "title": "Old Classics Collection",
+  "description": "A timeless collection of classic tracks from yesteryears.",
+  "songs": [
+    "Khaike Paan Banaras Wala.mp3",
+    "Kisi Ki Muskurahaton Pe Ho Nisar.mp3",
+    "Mere Mehboob Qayamat Hogi.mp3",
+    "Mere Samne Wali Khidki Mein.mp3",
+    "Mere Sapno ki raani.mp3",
+    "Pal pal dil ke paas.mp3",
+    "Peele Peele O Morey Raja.mp3",
+    "Tera Mujhse Hai Pehle Ka Naata Koi.mp3"
+  ]
 }
